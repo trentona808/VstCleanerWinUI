@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "VstCleaner (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "VstCleaner (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
