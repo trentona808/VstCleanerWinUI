@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 using VstCleaner.Common.DataProvider;
 using VstCleaner.Common.Model;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace VstCleaner.DataAccess
 {
@@ -56,45 +54,6 @@ namespace VstCleaner.DataAccess
             get
             { return "Testing"; }
         }
-
-
-
-        //return new List<Vst>
-        //{
-
-        //    new Vst
-        //    {
-        //        VstName = "Name1",
-        //        FullPath = "Path1",
-        //        IsWhitelisted = true
-        //    },
-        //    new Vst
-        //    {
-        //        VstName = "Name2",
-        //        FullPath = "Path2",
-        //        IsWhitelisted = false
-        //    },
-        //    new Vst
-        //    {
-        //        VstName = "Name2",
-        //        FullPath = "Path2",
-        //        IsWhitelisted = true
-        //    },
-        //    new Vst
-        //    {
-        //        VstName = "Name2",
-        //        FullPath = "Path2",
-        //        IsWhitelisted = false
-        //    },
-        //    new Vst
-        //    {
-        //        VstName = "Name2",
-        //        FullPath = "Path2",
-        //        IsWhitelisted = true
-        //    }
-
-        //};
-
 
 
 
