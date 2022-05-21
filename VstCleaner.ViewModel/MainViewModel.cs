@@ -15,7 +15,7 @@ namespace VstCleaner.ViewModel
         private VstViewModel _selectedVst;
         private readonly IVstDataProvider _vstDataProvider;
 
-        public string vDir { get; private set; }
+        public string vDir { get; set; }
 
         public MainViewModel(IVstDataProvider vstDataProvider)
         {
@@ -29,15 +29,18 @@ namespace VstCleaner.ViewModel
         public VstViewModel SelectedVst
         {
             get { return _selectedVst; }
-            set
-            {
-                if (_selectedVst != value)
-                {
-                    _selectedVst = value;
-                    RaisePropertyChanged();
-                    RaisePropertyChanged(nameof(IsVstSelected));
-                }
-            }
+            set { _selectedVst = value; }
+
+
+            //{
+            //    if (_selectedVst != value)
+            //    {
+            //        _selectedVst = value;
+            //        RaisePropertyChanged();
+            //        RaisePropertyChanged(nameof(IsVstSelected));
+            //    }
+            //}
+
         }
 
         public bool IsVstSelected => SelectedVst != null;

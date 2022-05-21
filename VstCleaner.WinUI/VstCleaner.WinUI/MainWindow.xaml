@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VstCleaner.WinUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:DataAccess="using:VstCleaner.DataAccess"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:DataAccess="using:VstCleaner.DataAccess"
     mc:Ignorable="d">
 
     <Grid>
@@ -28,9 +29,12 @@
                        Text="VST CLEANER"
                        Margin="20"/>
             <TextBlock HorizontalTextAlignment="Center"
-                       Text="{x:Bind ViewModel.vDir, Mode=OneWay}"
+                       Text="{x:Bind ViewModel.SelectedVst.VstName, Mode=OneWay}"
                        Margin="20"/>
-
+            <TextBlock HorizontalTextAlignment="Center"
+                       Text="{x:Bind ViewModel.vDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                       Margin="20"/>
+            <!--Text="{x:Bind ViewModel.vDir, Mode=OneWay}"-->
 
         </StackPanel>
 
@@ -39,7 +43,8 @@
         <ListView Grid.Row="1"
                  Margin="10"
                   x:Name="VSTfilesLV"
-                  ItemsSource="{x:Bind ViewModel.Vsts}"
+                  ItemsSource="{x:Bind ViewModel.Vsts, Mode=OneWay}"
+                  SelectedItem="{x:Bind ViewModel.SelectedVst, Mode=TwoWay}"
                   DisplayMemberPath="VstName"/>
 
         <StackPanel Grid.Row="2"
@@ -47,7 +52,8 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <Button Content="Refresh"
-                    Margin="0 0 25 0"/>
+                    Margin="0 0 25 0"
+                    Click="{x:Bind ViewModel.Load}"/>
             <Button Content="Add to Whitelist" />
         </StackPanel>
 

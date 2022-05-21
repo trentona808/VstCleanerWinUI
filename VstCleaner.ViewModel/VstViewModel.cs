@@ -23,7 +23,14 @@ namespace VstCleaner.ViewModel
         public string VstName
         {
             get { return _vst.VstName; }
-            set { _vst.VstName = value; }
+            set
+            {
+                if (_vst.VstName != value)
+                {
+                    _vst.VstName = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
 
 
