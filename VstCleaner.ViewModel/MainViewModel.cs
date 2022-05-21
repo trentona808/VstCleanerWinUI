@@ -29,7 +29,16 @@ namespace VstCleaner.ViewModel
         public VstViewModel SelectedVst
         {
             get { return _selectedVst; }
-            set { _selectedVst = value; }
+            set 
+            { 
+                if (_selectedVst != value)
+                {
+                    _selectedVst = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged(nameof(SelectedVst));
+                }
+
+            }
 
 
             //{
