@@ -54,7 +54,7 @@ namespace VstCleaner.DataAccess
 
 
 
-        private static string _vstDir = "TEST";
+        private static string _vstDir;
 
         public  static string VstDir
         {

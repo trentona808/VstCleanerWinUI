@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:DataAccess="using:VstCleaner.DataAccess"
+    xmlns:ViewModel="using:VstCleaner.ViewModel"
     mc:Ignorable="d">
 
     <Grid>
@@ -34,14 +35,13 @@
             <TextBlock HorizontalTextAlignment="Center"
                        Text="{x:Bind ViewModel.vDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                        Margin="20"/>
-            <!--Text="{x:Bind ViewModel.vDir, Mode=OneWay}"-->
 
         </StackPanel>
 
         <!--VST File List-->
 
         <ListView Grid.Row="1"
-                 Margin="10"
+                  Margin="10"
                   x:Name="VSTfilesLV"
                   ItemsSource="{x:Bind ViewModel.Vsts, Mode=OneWay}"
                   SelectedItem="{x:Bind ViewModel.SelectedVst, Mode=TwoWay}"
@@ -58,12 +58,12 @@
         </StackPanel>
 
         <!--Whitelist-->
-        <!--ItemsSource="{x:Bind vstList1, Mode=OneWay}"-->
         <ListBox Grid.Row="1"
                   Grid.Column="1"
                  Margin="10"
-                  x:Name="VSTfilesLV2"
-                  ItemsSource="{x:Bind ViewModel}"/>
+                  x:Name="VSTfilesLV2" />
+        <!--ItemsSource="{x:Bind }" -->
+
 
         <Button Grid.Row="2"
                 Grid.Column="1" 
