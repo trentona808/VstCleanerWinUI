@@ -35,20 +35,10 @@ namespace VstCleaner.ViewModel
                 {
                     _selectedVst = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged(nameof(SelectedVst));
+                    RaisePropertyChanged(nameof(IsVstSelected));
                 }
 
             }
-
-
-            //{
-            //    if (_selectedVst != value)
-            //    {
-            //        _selectedVst = value;
-            //        RaisePropertyChanged();
-            //        RaisePropertyChanged(nameof(IsVstSelected));
-            //    }
-            //}
 
         }
 
