@@ -61,9 +61,10 @@
         <ListBox Grid.Row="1"
                   Grid.Column="1"
                  Margin="10"
-                  x:Name="VSTfilesLV2" />
-        <!--ItemsSource="{x:Bind }" -->
-
+                  x:Name="VSTfilesLV2"
+                 ItemsSource="{x:Bind Whitelist.Vsts, Mode=TwoWay}"
+                 SelectedItem="{x:Bind Whitelist.SelectedVst, Mode=TwoWay}"
+                 DisplayMemberPath="VstName"/>
 
         <Button Grid.Row="2"
                 Grid.Column="1" 

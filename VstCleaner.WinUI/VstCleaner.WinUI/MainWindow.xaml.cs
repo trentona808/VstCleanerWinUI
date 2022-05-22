@@ -35,11 +35,20 @@ namespace VstCleaner.WinUI
             vD = "string";
             DP = new VstDataProvider();
             //vDD = DP.VstDir;
+
+            Whitelist = new MainViewModel(new WhitelistDataProvider());
+
+            Whitelist.Load();
+
+
+
         }
 
 
 
         public MainViewModel ViewModel { get; }
+
+        public MainViewModel Whitelist { get; }
 
         public string test { get; set; }
 

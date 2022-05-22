@@ -7,37 +7,38 @@ using System.Threading.Tasks;
 using VstCleaner.Common.DataProvider;
 using VstCleaner.DataAccess;
 
-
 namespace VstCleaner.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class WhitelistViewModel : ViewModelBase
     {
         private VstViewModel _selectedVst;
         private readonly IVstDataProvider _vstDataProvider;
 
         public string vDir { get; set; }
 
-        public MainViewModel(IVstDataProvider vstDataProvider)
+        public WhitelistViewModel(IVstDataProvider vstDataProvider)
         {
             _vstDataProvider = vstDataProvider;
             vDir = VstDataProvider.VstDir;
         }
 
 
-        public ObservableCollection<VstViewModel> Vsts { get; set;  } = new();
+        public ObservableCollection<VstViewModel> Vsts { get; } = new();
 
         public VstViewModel SelectedVst
         {
             get { return _selectedVst; }
-            set 
-            { 
+            set
+            {
                 if (_selectedVst != value)
                 {
                     _selectedVst = value;
                     RaisePropertyChanged();
                     RaisePropertyChanged(nameof(IsVstSelected));
                 }
+
             }
+
         }
 
         public bool IsVstSelected => SelectedVst != null;
@@ -53,6 +54,8 @@ namespace VstCleaner.ViewModel
             }
 
         }
+
+
 
     }
 }
