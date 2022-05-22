@@ -30,7 +30,7 @@
                        Text="VST CLEANER"
                        Margin="20"/>
             <TextBlock HorizontalTextAlignment="Center"
-                       Text="{x:Bind ViewModel.SelectedVst.VstName, Mode=OneWay}"
+                       Text="{x:Bind ViewModel.SelectedVst.FullPath, Mode=OneWay}"
                        Margin="20"/>
             <TextBlock HorizontalTextAlignment="Center"
                        Text="{x:Bind ViewModel.vDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

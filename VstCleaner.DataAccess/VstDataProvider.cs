@@ -23,7 +23,7 @@ namespace VstCleaner.DataAccess
                 vstList.Add(new Vst
                 {
                     VstName = System.IO.Path.GetFileNameWithoutExtension(file),
-                    FullPath = System.IO.Path.GetFileName(file),
+                    FullPath = System.IO.Path.GetFullPath(file),
                     IsWhitelisted = false
                 });
             }
