@@ -15,23 +15,21 @@ namespace VstCleaner.DataAccess
     {
         public IEnumerable<Vst> LoadVsts()
         {
-            var vstList = new List<Vst>();
+            //var vstList = new List<Vst>();
+            //foreach (string file in Directory.GetFiles(VstDir, "*.vst*"))
+            //{
+            //    vstList.Add(new Vst
+            //    {
+            //        VstName = System.IO.Path.GetFileNameWithoutExtension(file),
+            //        FullPath = System.IO.Path.GetFullPath(file),
+            //        IsWhitelisted = false
+            //    });
+            //}
 
 
+            //WriteJson(vstList, JsonPath);
 
-
-            foreach (string file in Directory.GetFiles(VstDir, "*.vst*"))
-            {
-                vstList.Add(new Vst
-                {
-                    VstName = System.IO.Path.GetFileNameWithoutExtension(file),
-                    FullPath = System.IO.Path.GetFullPath(file),
-                    IsWhitelisted = false
-                });
-            }
-
-
-            WriteJson(vstList, JsonPath);
+            var vstList = ReadJson(JsonPath);
 
 
 
@@ -56,6 +54,19 @@ namespace VstCleaner.DataAccess
             {
                 writer.Write(writeToJson);
             }
+        }
+
+        public List<Vst> ReadJson(string path)
+        {
+            string jsonToString;
+            using (var reader = new StreamReader(path))
+            {
+                jsonToString = reader.ReadToEnd();
+            }
+
+            var jsonWhitelist = JsonConvert.DeserializeObject<List<Vst>>(jsonToString);
+            
+            return jsonWhitelist;
         }
 
         private string _jsonPath = @"C:\Users\Trenton\Documents\test.json";
