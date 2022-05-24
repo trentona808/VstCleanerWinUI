@@ -13,5 +13,9 @@ namespace VstCleaner.Common.DataProvider
 
         void SaveVst(Vst vst);
 
+        //void AddToWhitelist(Vst vst);
+
+        //void WriteJson(Vst vst);
+
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -36,10 +37,10 @@ namespace VstCleaner.WinUI
             DP = new VstDataProvider();
             //vDD = DP.VstDir;
 
-            Whitelist = new MainViewModel(new WhitelistDataProvider());
+            Whitelist = new WhitelistViewModel(new WhitelistDataProvider());
 
             Whitelist.Load();
-
+            
 
 
         }
@@ -48,7 +49,7 @@ namespace VstCleaner.WinUI
 
         public MainViewModel ViewModel { get; }
 
-        public MainViewModel Whitelist { get; }
+        public WhitelistViewModel Whitelist { get; }
 
         public string test { get; set; }
 
@@ -59,10 +60,13 @@ namespace VstCleaner.WinUI
         public string vDD { get; private set; }
 
 
-        //void refreshButtonClick(object sender, RoutedEventArgs e)
-        //{
-        //    myButton.Content = "Clicked";
-        //}
+
+        void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            Whitelist.AddToWhitelist(ViewModel.SelectedVst);
+            Debug.WriteLine($"Add to whitelist button clicked");
+
+        }
 
 
     }

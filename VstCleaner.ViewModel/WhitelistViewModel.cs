@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,31 +8,29 @@ using VstCleaner.Common.DataProvider;
 using VstCleaner.Common.Model;
 using VstCleaner.DataAccess;
 
-
 namespace VstCleaner.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class WhitelistViewModel : ViewModelBase
     {
-
         private VstViewModel _selectedVst;
         private readonly IVstDataProvider _vstDataProvider;
 
         public string vDir { get; set; }
 
-        public MainViewModel(IVstDataProvider vstDataProvider)
+        public WhitelistViewModel(IVstDataProvider vstDataProvider)
         {
             _vstDataProvider = vstDataProvider;
             vDir = VstDataProvider.VstDir;
         }
 
 
-        public ObservableCollection<VstViewModel> Vsts { get; set;  } = new();
+        public ObservableCollection<VstViewModel> Vsts { get; set; } = new();
 
         public VstViewModel SelectedVst
         {
             get { return _selectedVst; }
-            set 
-            { 
+            set
+            {
                 if (_selectedVst != value)
                 {
                     _selectedVst = value;
@@ -57,18 +54,24 @@ namespace VstCleaner.ViewModel
 
         }
 
+        public void AddToWhitelist(VstViewModel SelectedVst)
+        {
+            //var vstToAdd = new Vst();
+            //vstToAdd.VstName = SelectedVst.VstName;
+            //vstToAdd.FullPath = SelectedVst.FullPath;
+            //vstToAdd.IsWhitelisted = true;
+            //var test = new WhitelistDataProvider();
+            //test.AddToWhitelist(vstToAdd);
+            SelectedVst.IsWhitelisted = true;
+            Vsts.Add(SelectedVst);
 
-        //public void AddToWhitelist()
-        //{
-        //    var vstToAdd = new Vst();
-        //    vstToAdd.VstName = SelectedVst.VstName;
-        //    vstToAdd.FullPath = SelectedVst.FullPath;
-        //    vstToAdd.IsWhitelisted = true;
-        //    var test = new WhitelistDataProvider();
-        //    test.AddToWhitelist(vstToAdd);
-        //    var test2 = new WhitelistViewModel(test);
-        //    test2.Load();
-        //}
+
+
+            //Load();
+
+        }
+
 
     }
 }
+

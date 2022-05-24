@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿//using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using VstCleaner.Common.DataProvider;
 using VstCleaner.Common.Model;
+using System.Text.Json;
+using System.Collections.ObjectModel;
 
 namespace VstCleaner.DataAccess
 {
@@ -31,42 +33,22 @@ namespace VstCleaner.DataAccess
 
             var vstList = ReadJson(JsonPath);
 
-
-
-
-
-
-
-
-
-
-
             return vstList;
-
-
         }
 
 
-        public void WriteJson(List<Vst> list, string path)
+        public void WriteJson(List<Vst> list)
         {
-            var writeToJson = JsonConvert.SerializeObject(list, Formatting.Indented);
-            using (var writer = new StreamWriter(path))
-            {
-                writer.Write(writeToJson);
-            }
+            var path = @"C:\Users\Trenton\Documents\test.json";
+            string jsonString = JsonSerializer.Serialize(list);
+            File.WriteAllText(path, jsonString);
         }
 
         public List<Vst> ReadJson(string path)
         {
-            string jsonToString;
-            using (var reader = new StreamReader(path))
-            {
-                jsonToString = reader.ReadToEnd();
-            }
-
-            var jsonWhitelist = JsonConvert.DeserializeObject<List<Vst>>(jsonToString);
-            
-            return jsonWhitelist;
+            string jsonString = File.ReadAllText(path);
+            List<Vst> vstList = JsonSerializer.Deserialize<List<Vst>>(jsonString)!;
+            return vstList;
         }
 
         private string _jsonPath = @"C:\Users\Trenton\Documents\test.json";
@@ -88,25 +70,26 @@ namespace VstCleaner.DataAccess
 
         private static string _vstDir = @"C:\Program Files\Common Files\VST2";
 
-
         public static string VstDir
         {
             get { return _vstDir; }
             set { _vstDir = value; }
         }
 
+        //public void AddToWhitelist(Vst SelectedVst, List<Vst> list)
+        //{
+        //    var vstList = ReadJson(JsonPath);
+        //    vstList.Add(vst);
+        //    WriteJson(vstList);
+        //    LoadVsts();
+        //    Debug.WriteLine($"Vst added to whitelist: {vst.VstName}");
 
-
+        //}
 
         public void SaveVst(Vst vst)
         {
             Debug.WriteLine($"Vst saved: {vst.VstName}");
         }
-
-        /*
-         File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "greeting.txt"), "Hello World!");
-         */
-
 
 
 

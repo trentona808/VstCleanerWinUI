@@ -54,7 +54,9 @@
             <Button Content="Refresh"
                     Margin="0 0 25 0"
                     Click="{x:Bind ViewModel.Load}"/>
-            <Button Content="Add to Whitelist" />
+            <Button Content="Add to Whitelist"
+                    Margin="0 0 25 0"
+                    Click="addButton_Click"/>
         </StackPanel>
 
         <!--Whitelist-->

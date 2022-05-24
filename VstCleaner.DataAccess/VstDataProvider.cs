@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using VstCleaner.Common.DataProvider;
 using VstCleaner.Common.Model;
@@ -69,5 +70,16 @@ namespace VstCleaner.DataAccess
         {
             Debug.WriteLine($"Vst saved: {vst.VstName}");
         }
+
+
+
+        //public void WriteJson(List<Vst> list)
+        //{
+        //    var path = @"C:\Users\Trenton\Documents\test.json";
+        //    string jsonString = JsonSerializer.Serialize(list);
+        //    File.WriteAllText(path, jsonString);
+        //}
+
+
     }
 }
