@@ -54,9 +54,7 @@ namespace VstCleaner.ViewModel
             {
                 Vsts.Add(new VstViewModel(vst, _vstDataProvider));
             }
-
         }
-
 
     }
 }

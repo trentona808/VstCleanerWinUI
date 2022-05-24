@@ -26,9 +26,7 @@ namespace VstCleaner.WinUI
         {
             this.InitializeComponent();
 
-            ViewModel = new MainViewModel(new VstDataProvider());
-            //this.Activated += MainWindow_Activated;
-            ViewModel.Load();
+
 
             test = "Test";
             //VD = VstDataProvider.VstDir;
@@ -38,7 +36,10 @@ namespace VstCleaner.WinUI
 
             Whitelist = new WhitelistViewModel(new WhitelistDataProvider());
             Whitelist.Load();
-            
+
+            ViewModel = new MainViewModel(new VstDataProvider());
+            //this.Activated += MainWindow_Activated;
+            ViewModel.Load();
 
 
         }

@@ -55,8 +55,15 @@ namespace VstCleaner.ViewModel
 
         public void AddToWhitelist(VstViewModel SelectedVst)
         {
-            SelectedVst.IsWhitelisted = true;
-            Vsts.Add(SelectedVst);
+            //Can remove duplicate validation if "isWhitelisted" is removed from model and/or "isWhitelisted" is added to Vsts when loading.
+            bool duplicateVst = Vsts.Any(x => x.FullPath == SelectedVst.FullPath);
+
+            if (!duplicateVst)
+            {
+                SelectedVst.IsWhitelisted = true;
+                Vsts.Add(SelectedVst);
+            }
+            
         }
 
         public void SaveWhiteList()
