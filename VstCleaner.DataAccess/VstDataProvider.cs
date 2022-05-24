@@ -31,28 +31,7 @@ namespace VstCleaner.DataAccess
             return vstList;
 
 
-
-            //return new List<Vst>
-            //{
-            //    new Vst
-            //    {
-            //        VstName = "1",
-            //        FullPath = "111",
-            //        IsWhitelisted = true,
-            //    },
-            //    new Vst
-            //    {
-            //        VstName= "2",
-            //        FullPath = "222",
-            //        IsWhitelisted= true,
-            //    }
-            //};
-
-
         }
-
-        //private string _vstDir = @"C:\Program Files\Common Files\VST3";
-
 
 
         private static string _vstDir;
@@ -62,23 +41,6 @@ namespace VstCleaner.DataAccess
             get { return _vstDir; }
             set { _vstDir = value; }
         }
-
-
-
-
-        public void SaveVst(Vst vst)
-        {
-            Debug.WriteLine($"Vst saved: {vst.VstName}");
-        }
-
-
-
-        //public void WriteJson(List<Vst> list)
-        //{
-        //    var path = @"C:\Users\Trenton\Documents\test.json";
-        //    string jsonString = JsonSerializer.Serialize(list);
-        //    File.WriteAllText(path, jsonString);
-        //}
 
 
     }

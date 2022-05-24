@@ -68,12 +68,20 @@
                  SelectedItem="{x:Bind Whitelist.SelectedVst, Mode=TwoWay}"
                  DisplayMemberPath="VstName"/>
 
-        <Button Grid.Row="2"
-                Grid.Column="1" 
-                Content="Remove from Whitelist" 
-                Margin="10" 
-                HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Button Content="Remove from Whitelist" 
+                    Margin="0 0 25 0" 
+                    HorizontalAlignment="Center" />
+            <Button Content="Save Whitelist" 
+                    Click="{x:Bind Whitelist.SaveWhiteList}"
+                    Margin="0 0 25 0" 
+                    HorizontalAlignment="Center" />
 
+
+        </StackPanel>
 
     </Grid>
 

@@ -58,17 +58,5 @@ namespace VstCleaner.ViewModel
         }
 
 
-        //public void AddToWhitelist()
-        //{
-        //    var vstToAdd = new Vst();
-        //    vstToAdd.VstName = SelectedVst.VstName;
-        //    vstToAdd.FullPath = SelectedVst.FullPath;
-        //    vstToAdd.IsWhitelisted = true;
-        //    var test = new WhitelistDataProvider();
-        //    test.AddToWhitelist(vstToAdd);
-        //    var test2 = new WhitelistViewModel(test);
-        //    test2.Load();
-        //}
-
     }
 }

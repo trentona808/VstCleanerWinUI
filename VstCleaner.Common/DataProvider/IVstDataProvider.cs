@@ -11,7 +11,7 @@ namespace VstCleaner.Common.DataProvider
     {
         IEnumerable<Vst> LoadVsts();
 
-        void SaveVst(Vst vst);
+        //void SaveVst(Vst vst);
 
         //void AddToWhitelist(Vst vst);
 

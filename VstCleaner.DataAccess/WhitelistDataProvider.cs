@@ -17,27 +17,12 @@ namespace VstCleaner.DataAccess
     {
         public IEnumerable<Vst> LoadVsts()
         {
-            //var vstList = new List<Vst>();
-            //foreach (string file in Directory.GetFiles(VstDir, "*.vst*"))
-            //{
-            //    vstList.Add(new Vst
-            //    {
-            //        VstName = System.IO.Path.GetFileNameWithoutExtension(file),
-            //        FullPath = System.IO.Path.GetFullPath(file),
-            //        IsWhitelisted = false
-            //    });
-            //}
-
-
-            //WriteJson(vstList, JsonPath);
-
             var vstList = ReadJson(JsonPath);
-
             return vstList;
         }
 
 
-        public void WriteJson(List<Vst> list)
+        public static void SaveWhitelist(List<Vst> list)
         {
             var path = @"C:\Users\Trenton\Documents\test.json";
             string jsonString = JsonSerializer.Serialize(list);
@@ -67,7 +52,6 @@ namespace VstCleaner.DataAccess
         }
 
 
-
         private static string _vstDir = @"C:\Program Files\Common Files\VST2";
 
         public static string VstDir
@@ -75,22 +59,6 @@ namespace VstCleaner.DataAccess
             get { return _vstDir; }
             set { _vstDir = value; }
         }
-
-        //public void AddToWhitelist(Vst SelectedVst, List<Vst> list)
-        //{
-        //    var vstList = ReadJson(JsonPath);
-        //    vstList.Add(vst);
-        //    WriteJson(vstList);
-        //    LoadVsts();
-        //    Debug.WriteLine($"Vst added to whitelist: {vst.VstName}");
-
-        //}
-
-        public void SaveVst(Vst vst)
-        {
-            Debug.WriteLine($"Vst saved: {vst.VstName}");
-        }
-
 
 
     }

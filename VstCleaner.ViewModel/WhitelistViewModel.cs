@@ -51,27 +51,28 @@ namespace VstCleaner.ViewModel
             {
                 Vsts.Add(new VstViewModel(vst, _vstDataProvider));
             }
-
         }
 
         public void AddToWhitelist(VstViewModel SelectedVst)
         {
-            //var vstToAdd = new Vst();
-            //vstToAdd.VstName = SelectedVst.VstName;
-            //vstToAdd.FullPath = SelectedVst.FullPath;
-            //vstToAdd.IsWhitelisted = true;
-            //var test = new WhitelistDataProvider();
-            //test.AddToWhitelist(vstToAdd);
             SelectedVst.IsWhitelisted = true;
             Vsts.Add(SelectedVst);
-
-
-
-            //Load();
-
         }
 
-
+        public void SaveWhiteList()
+        {
+            var list = new List<Vst>();
+            foreach (var vst in Vsts)
+            {
+                //var tempVst = new Vst();
+                //tempVst.VstName = vst.VstName;
+                //tempVst.FullPath = vst.FullPath;
+                //tempVst.IsWhitelisted = true;
+                //list.Add(tempVst);
+                list.Add(new Vst() { VstName = vst.VstName, FullPath = vst.FullPath, IsWhitelisted = true });
+            }
+            WhitelistDataProvider.SaveWhitelist(list);
+        }
     }
 }
 
