@@ -40,11 +40,15 @@ namespace VstCleaner.WinUI
             ViewModel = new MainViewModel(new VstDataProvider());
             //this.Activated += MainWindow_Activated;
             ViewModel.Load();
+            string vstDir = ViewModel.VstDir;
+
+            VstDirectory = new DirectoryViewModel();
 
 
         }
 
 
+        public string VstDir { get; set; }
 
         public MainViewModel ViewModel { get; }
 
@@ -58,12 +62,20 @@ namespace VstCleaner.WinUI
         public VstDataProvider DP { get; private set; }
         public string vDD { get; private set; }
 
+        public DirectoryViewModel VstDirectory { get; private set; }
 
 
         void addButton_Click(object sender, RoutedEventArgs e)
         {
             Whitelist.AddToWhitelist(ViewModel.SelectedVst);
             Debug.WriteLine($"Add to whitelist button clicked");
+
+        }
+
+        void getVstDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            VstDirectory.GetDir();
+            Debug.WriteLine($"Get Vst Directory button clicked");
 
         }
 

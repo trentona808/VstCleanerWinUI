@@ -43,6 +43,15 @@ namespace VstCleaner.ViewModel
             }
         }
 
+        private string vstDir;
+
+        public string VstDir
+        {
+            get { return vstDir; }
+            set { vstDir = value; }
+        }
+
+
         public bool IsVstSelected => SelectedVst != null;
 
         public void Load()

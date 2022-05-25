@@ -33,8 +33,12 @@
                        Text="{x:Bind ViewModel.SelectedVst.FullPath, Mode=OneWay}"
                        Margin="20"/>
             <TextBlock HorizontalTextAlignment="Center"
-                       Text="{x:Bind ViewModel.vDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                       Text="{x:Bind VstDirectory.VstPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                        Margin="20"/>
+            <Button Content="Get Directory"
+                    Margin="0 0 25 0"
+                    HorizontalAlignment="Center"
+                    Click="getVstDirectory_Click"/>
 
         </StackPanel>
 
