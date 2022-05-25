@@ -17,8 +17,16 @@ namespace VstCleaner.DataAccess
     {
         public IEnumerable<Vst> LoadVsts(string jsonPath)
         {
-            var vstList = ReadJson(jsonPath);
-            return vstList;
+            if (File.Exists(jsonPath))
+            {
+                var vstList = ReadJson(jsonPath);
+                return vstList;
+            }
+            else
+            {
+                var vstList = new List<Vst>();
+                return vstList;
+            }
         }
 
 
