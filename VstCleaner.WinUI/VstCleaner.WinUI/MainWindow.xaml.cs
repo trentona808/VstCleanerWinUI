@@ -43,28 +43,37 @@ namespace VstCleaner.WinUI
         public DirectoryViewModel VstDirectory { get; private set; }
 
 
-        void addButton_Click(object sender, RoutedEventArgs e)
+        void AddButton_Click(object sender, RoutedEventArgs e)
         {
             Whitelist.AddToWhitelist(ViewModel.SelectedVst);
             Debug.WriteLine($"Add to whitelist button clicked");
-
         }
 
-        void saveButton_Click(object sender, RoutedEventArgs e)
+        void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            Whitelist.SaveWhiteList(JsonPath);
-            Debug.WriteLine($"Save whitelist button clicked");
-
+            Whitelist.RemoveFromWhitelist(Whitelist.SelectedVst);
+            Debug.WriteLine($"Remove from whitelist button clicked");
         }
 
-        void getVstDirectory_Click(object sender, RoutedEventArgs e)
+        //void SaveButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Whitelist.SaveWhiteList(JsonPath);
+        //    Debug.WriteLine($"Save whitelist button clicked");
+        //}
+
+        void GetVstDirectory_Click(object sender, RoutedEventArgs e)
         {
             VstDirectory.GetDir();
             Debug.WriteLine($"Get Vst Directory button clicked");
             ViewModel.Load(VstDirectory.VstPath);
-
-
         }
+
+        void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Delete(Whitelist.vsts);
+            Debug.WriteLine($"Delete Vsts button clicked");
+        }
+
 
         private string _jsonPath = @"C:\Users\Trenton\Documents\test.json";
 

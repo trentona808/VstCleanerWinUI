@@ -32,6 +32,17 @@ namespace VstCleaner.DataAccess
 
         }
 
+        public static void Delete(IEnumerable<Vst> VstsNotWhitelisted)
+        {
+            foreach (Vst vst in VstsNotWhitelisted)
+            {
+                if (File.Exists(vst.FullPath))
+                {
+                    File.Delete(vst.FullPath);
+                }
+            }
+        }
+
 
     }
 }

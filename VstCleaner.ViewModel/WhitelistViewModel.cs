@@ -25,6 +25,8 @@ namespace VstCleaner.ViewModel
 
         public ObservableCollection<VstViewModel> Vsts { get; set; } = new();
 
+        public IEnumerable<Vst> vsts { get; set; }
+
         public VstViewModel SelectedVst
         {
             get { return _selectedVst; }
@@ -43,7 +45,7 @@ namespace VstCleaner.ViewModel
 
         public void Load(string VstDir)
         {
-            var vsts = _vstDataProvider.LoadVsts(VstDir);
+            vsts = _vstDataProvider.LoadVsts(VstDir);
 
             Vsts.Clear();
             foreach (var vst in vsts)
@@ -62,7 +64,11 @@ namespace VstCleaner.ViewModel
                 SelectedVst.IsWhitelisted = true;
                 Vsts.Add(SelectedVst);
             }
-            
+        }
+
+        public void RemoveFromWhitelist(VstViewModel SelectedVst)
+        {
+            Vsts.Remove(SelectedVst);
         }
 
         public void SaveWhiteList(string jsonPath)

@@ -38,7 +38,7 @@
             <Button Content="Get Directory"
                     Margin="0 0 25 0"
                     HorizontalAlignment="Center"
-                    Click="getVstDirectory_Click"/>
+                    Click="GetVstDirectory_Click"/>
 
         </StackPanel>
 
@@ -59,7 +59,7 @@
                     Margin="0 0 25 0"/>
             <Button Content="Add to Whitelist"
                     Margin="0 0 25 0"
-                    Click="addButton_Click"/>
+                    Click="AddButton_Click"/>
         </StackPanel>
 
         <!--Whitelist-->
@@ -77,9 +77,10 @@
                     HorizontalAlignment="Center">
             <Button Content="Remove from Whitelist" 
                     Margin="0 0 25 0" 
-                    HorizontalAlignment="Center" />
-            <Button Content="Save Whitelist" 
-                    Click="saveButton_Click"
+                    HorizontalAlignment="Center" 
+                    Click="RemoveButton_Click"/>
+            <Button Content="Delete Vsts" 
+                    Click="DeleteButton_Click"
                     Margin="0 0 25 0" 
                     HorizontalAlignment="Center" />
 
