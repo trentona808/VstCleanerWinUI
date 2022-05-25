@@ -13,25 +13,6 @@ namespace VstCleaner.ViewModel
         {
         }
 
-        //public string VstDir()
-        //{
-
-        //    string path = string.Empty;
-
-
-        //    using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
-        //    {
-        //        dialog.IsFolderPicker = true;
-        //        dialog.Multiselect = false;
-        //        dialog.DefaultDirectory = this.OutputPathBox.Text;
-        //        if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-        //        {
-        //            path = dialog.FileName;
-        //        }
-        //    }
- 
-        //}
-
         public void GetDir()
         {
             var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
@@ -40,7 +21,6 @@ namespace VstCleaner.ViewModel
                 VstPath = dialog.SelectedPath;
             }
 
-            //return VstPath;
         }
 
         private string _vstPath;
@@ -54,7 +34,6 @@ namespace VstCleaner.ViewModel
                 {
                     _vstPath = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(IsVstSelected));
                 }
             }
         }

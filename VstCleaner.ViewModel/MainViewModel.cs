@@ -23,7 +23,6 @@ namespace VstCleaner.ViewModel
         public MainViewModel(IVstDataProvider vstDataProvider)
         {
             _vstDataProvider = vstDataProvider;
-            vDir = VstDataProvider.VstDir;
         }
 
 
@@ -43,20 +42,12 @@ namespace VstCleaner.ViewModel
             }
         }
 
-        private string vstDir;
-
-        public string VstDir
-        {
-            get { return vstDir; }
-            set { vstDir = value; }
-        }
-
 
         public bool IsVstSelected => SelectedVst != null;
 
-        public void Load()
+        public void Load(string VstDir)
         {
-            var vsts = _vstDataProvider.LoadVsts();
+            var vsts = _vstDataProvider.LoadVsts(VstDir);
 
             Vsts.Clear();
             foreach (var vst in vsts)

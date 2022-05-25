@@ -19,7 +19,6 @@ namespace VstCleaner.ViewModel
             _vstDataProvider = vstDataProvider;
         }
 
-
         public string VstName
         {
             get { return _vst.VstName; }
@@ -33,21 +32,17 @@ namespace VstCleaner.ViewModel
             }
         }
 
-
         public string FullPath
         {
             get { return _vst.FullPath; }
             set { _vst.FullPath = value; }
         }
 
-
         public bool IsWhitelisted
         {
             get { return _vst.IsWhitelisted; }
             set { _vst.IsWhitelisted = value; }
         }
-
-
 
     }
 }

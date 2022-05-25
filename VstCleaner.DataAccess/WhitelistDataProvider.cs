@@ -15,33 +15,25 @@ namespace VstCleaner.DataAccess
 {
     public class WhitelistDataProvider : IVstDataProvider
     {
-        public IEnumerable<Vst> LoadVsts()
+        public IEnumerable<Vst> LoadVsts(string jsonPath)
         {
-            var vstList = ReadJson(JsonPath);
+            var vstList = ReadJson(jsonPath);
             return vstList;
         }
 
 
-        public static void SaveWhitelist(List<Vst> list)
+        public static void SaveWhitelist(List<Vst> list, string jsonPath)
         {
-            var path = @"C:\Users\Trenton\Documents\test.json";
+            //var path = @"C:\Users\Trenton\Documents\test.json";
             string jsonString = JsonSerializer.Serialize(list);
-            File.WriteAllText(path, jsonString);
+            File.WriteAllText(jsonPath, jsonString);
         }
 
-        public List<Vst> ReadJson(string path)
+        public List<Vst> ReadJson(string jsonPath)
         {
-            string jsonString = File.ReadAllText(path);
+            string jsonString = File.ReadAllText(jsonPath);
             List<Vst> vstList = JsonSerializer.Deserialize<List<Vst>>(jsonString)!;
             return vstList;
-        }
-
-        private string _jsonPath = @"C:\Users\Trenton\Documents\test.json";
-
-        public string JsonPath
-        {
-            get { return _jsonPath; }
-            set { _jsonPath = value; }
         }
 
         public class WhitelistVst
@@ -49,15 +41,6 @@ namespace VstCleaner.DataAccess
             public string VstName { get; set; }
             public string FullPath { get; set; }
             public bool IsWhitelisted { get; set; }
-        }
-
-
-        private static string _vstDir = @"C:\Program Files\Common Files\VST2";
-
-        public static string VstDir
-        {
-            get { return _vstDir; }
-            set { _vstDir = value; }
         }
 
 

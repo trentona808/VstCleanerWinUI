@@ -9,7 +9,7 @@ namespace VstCleaner.Common.DataProvider
 {
     public interface IVstDataProvider
     {
-        IEnumerable<Vst> LoadVsts();
+        IEnumerable<Vst> LoadVsts(string path);
 
         //void SaveVst(Vst vst);
 

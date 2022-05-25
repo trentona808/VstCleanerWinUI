@@ -14,9 +14,8 @@ namespace VstCleaner.DataAccess
 {
     public class VstDataProvider : IVstDataProvider
     {
-        public IEnumerable<Vst> LoadVsts()
+        public IEnumerable<Vst> LoadVsts(string VstDir)
         {
-            VstDir = @"C:\Program Files\Common Files\VST3";
             var vstList = new List<Vst>();
 
             foreach (string file in Directory.GetFiles(VstDir, "*.vst*"))
@@ -31,15 +30,6 @@ namespace VstCleaner.DataAccess
             return vstList;
 
 
-        }
-
-
-        private static string _vstDir;
-
-        public  static string VstDir
-        {
-            get { return _vstDir; }
-            set { _vstDir = value; }
         }
 
 

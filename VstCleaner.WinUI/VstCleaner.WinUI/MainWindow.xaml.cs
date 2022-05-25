@@ -26,41 +26,19 @@ namespace VstCleaner.WinUI
         {
             this.InitializeComponent();
 
-
-
-            test = "Test";
-            //VD = VstDataProvider.VstDir;
-            vD = "string";
-            DP = new VstDataProvider();
-            //vDD = DP.VstDir;
-
             Whitelist = new WhitelistViewModel(new WhitelistDataProvider());
-            Whitelist.Load();
+            Whitelist.Load(JsonPath);
 
             ViewModel = new MainViewModel(new VstDataProvider());
-            //this.Activated += MainWindow_Activated;
-            ViewModel.Load();
-            string vstDir = ViewModel.VstDir;
 
             VstDirectory = new DirectoryViewModel();
-
 
         }
 
 
-        public string VstDir { get; set; }
-
         public MainViewModel ViewModel { get; }
 
         public WhitelistViewModel Whitelist { get; }
-
-        public string test { get; set; }
-
-        public string VD { get; private set; }
-
-        public string vD { get; set; }
-        public VstDataProvider DP { get; private set; }
-        public string vDD { get; private set; }
 
         public DirectoryViewModel VstDirectory { get; private set; }
 
@@ -72,12 +50,30 @@ namespace VstCleaner.WinUI
 
         }
 
+        void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Whitelist.SaveWhiteList(JsonPath);
+            Debug.WriteLine($"Save whitelist button clicked");
+
+        }
+
         void getVstDirectory_Click(object sender, RoutedEventArgs e)
         {
             VstDirectory.GetDir();
             Debug.WriteLine($"Get Vst Directory button clicked");
+            ViewModel.Load(VstDirectory.VstPath);
+
 
         }
+
+        private string _jsonPath = @"C:\Users\Trenton\Documents\test.json";
+
+        public string JsonPath
+        {
+            get { return _jsonPath; }
+            set { _jsonPath = value; }
+        }
+
 
 
     }
