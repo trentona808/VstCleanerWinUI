@@ -69,6 +69,7 @@ namespace VstCleaner.WinUI
         {
             ViewModel.Delete(Whitelist.Vsts);
             Debug.WriteLine($"Delete Vsts button clicked");
+            ViewModel.Load(VstDirectory.VstPath);
         }
 
 
@@ -79,8 +80,6 @@ namespace VstCleaner.WinUI
             get { return _jsonPath; }
             set { _jsonPath = value; }
         }
-
-
 
     }
 }

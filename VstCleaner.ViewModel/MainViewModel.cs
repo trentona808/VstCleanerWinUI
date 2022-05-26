@@ -20,7 +20,7 @@ namespace VstCleaner.ViewModel
         private VstViewModel _selectedVst;
         private readonly IVstDataProvider _vstDataProvider;
 
-        public string vDir { get; set; }
+        //public string vDir { get; set; }
 
         public MainViewModel(IVstDataProvider vstDataProvider)
         {
