@@ -8,7 +8,7 @@ using VstCleaner.Common.Model;
 
 namespace VstCleaner.ViewModel
 {
-    public class VstViewModel : ViewModelBase
+    public class VstViewModel : ViewModelBase, IEquatable<VstViewModel>
     {
         private readonly Vst _vst;
         private readonly IVstDataProvider _vstDataProvider;
@@ -44,5 +44,14 @@ namespace VstCleaner.ViewModel
             set { _vst.IsWhitelisted = value; }
         }
 
+        public bool Equals(VstViewModel other)
+        {
+            if (other is null)
+                return false;
+            return this.VstName == other.VstName && this.FullPath == other.FullPath && this.IsWhitelisted == other.IsWhitelisted;
+        }
+
+        public override bool Equals(object obj) => Equals(obj as VstViewModel);
+        public override int GetHashCode() => (VstName, FullPath, IsWhitelisted).GetHashCode();
     }
 }

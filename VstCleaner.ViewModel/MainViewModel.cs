@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,10 +61,23 @@ namespace VstCleaner.ViewModel
         }
 
 
-        public void Delete(IEnumerable<Vst> Whitelist)
+        public void Delete(ObservableCollection<VstViewModel> Whitelist)
         {
-            IEnumerable<Vst> VstsNotWhitelisted = vsts.Except(Whitelist);
-            VstDataProvider.Delete(VstsNotWhitelisted);
+            var VstsNotWhitelisted = Vsts.Except(Whitelist).ToList();
+
+            foreach (var vst in VstsNotWhitelisted)
+            {
+                //Debug.WriteLine($"{vst.FullPath}");
+
+                if (File.Exists(vst.FullPath))
+                {
+                    File.Delete(vst.FullPath);
+                    Debug.WriteLine($"{vst.FullPath} was deleted.");
+                }
+            }
+
+
+
 
         }
     }

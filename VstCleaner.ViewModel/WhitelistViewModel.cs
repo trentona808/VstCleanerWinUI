@@ -43,9 +43,9 @@ namespace VstCleaner.ViewModel
 
         public bool IsVstSelected => SelectedVst != null;
 
-        public void Load(string VstDir)
+        public void Load(string jsonPath)
         {
-            vsts = _vstDataProvider.LoadVsts(VstDir);
+            vsts = _vstDataProvider.LoadVsts(jsonPath);
 
             Vsts.Clear();
             foreach (var vst in vsts)
@@ -54,30 +54,38 @@ namespace VstCleaner.ViewModel
             }
         }
 
-        public void AddToWhitelist(VstViewModel SelectedVst)
+        public void AddToWhitelist(VstViewModel selectedVst)
         {
             //Can remove duplicate validation if "isWhitelisted" is removed from model and/or "isWhitelisted" is added to Vsts when loading.
-            bool duplicateVst = Vsts.Any(x => x.FullPath == SelectedVst.FullPath);
+            if (Vsts == null)
+                Vsts.Add(selectedVst);
 
-            if (!duplicateVst)
+            else
             {
-                SelectedVst.IsWhitelisted = true;
-                Vsts.Add(SelectedVst);
+                bool duplicateVst = Vsts.Any(x => x.FullPath == selectedVst.FullPath);
+
+                if (!duplicateVst)
+                {
+                    Vsts.Add(selectedVst);
+                }
             }
         }
 
-        public void RemoveFromWhitelist(VstViewModel SelectedVst)
+        public void RemoveFromWhitelist(VstViewModel selectedVst)
         {
-            Vsts.Remove(SelectedVst);
+            Vsts.Remove(selectedVst);
         }
 
         public void SaveWhiteList(string jsonPath)
         {
             var list = new List<Vst>();
-            foreach (var vst in Vsts)
+            if (Vsts != null)
             {
+                foreach (var vst in Vsts)
+                {
 
-                list.Add(new Vst() { VstName = vst.VstName, FullPath = vst.FullPath, IsWhitelisted = true });
+                    list.Add(new Vst() { VstName = vst.VstName, FullPath = vst.FullPath, IsWhitelisted = false });
+                }
             }
             WhitelistDataProvider.SaveWhitelist(list, jsonPath);
         }

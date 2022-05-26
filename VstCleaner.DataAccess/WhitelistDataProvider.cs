@@ -32,7 +32,6 @@ namespace VstCleaner.DataAccess
 
         public static void SaveWhitelist(List<Vst> list, string jsonPath)
         {
-            //var path = @"C:\Users\Trenton\Documents\test.json";
             string jsonString = JsonSerializer.Serialize(list);
             File.WriteAllText(jsonPath, jsonString);
         }

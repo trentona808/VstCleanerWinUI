@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -29,20 +30,7 @@ namespace VstCleaner.DataAccess
             }
             return vstList;
 
-
         }
-
-        public static void Delete(IEnumerable<Vst> VstsNotWhitelisted)
-        {
-            foreach (Vst vst in VstsNotWhitelisted)
-            {
-                if (File.Exists(vst.FullPath))
-                {
-                    File.Delete(vst.FullPath);
-                }
-            }
-        }
-
 
     }
 }
