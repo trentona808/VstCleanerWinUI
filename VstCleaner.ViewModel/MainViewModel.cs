@@ -69,10 +69,9 @@ namespace VstCleaner.ViewModel
                 if (File.Exists(vst.FullPath))
                 {
                     File.Delete(vst.FullPath);
-                    Debug.WriteLine($"{vst.FullPath} was deleted.");
+                    Debug.WriteLine($"{vst.VstName} was deleted.");
                 }
             }
-
 
 
 

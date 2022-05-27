@@ -80,8 +80,6 @@ namespace VstCleaner.ViewModel
             collectionToSort.Clear();
             foreach (VstViewModel j in temp) collectionToSort.Add(j);
             return collectionToSort;
-
-
         }
 
         public void RemoveFromWhitelist(VstViewModel selectedVst)

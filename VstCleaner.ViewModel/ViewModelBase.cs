@@ -12,11 +12,6 @@ namespace VstCleaner.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool Equals(ViewModelBase other)
-        {
-            throw new NotImplementedException();
-        }
-
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

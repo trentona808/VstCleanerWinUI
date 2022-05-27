@@ -46,14 +46,12 @@ namespace VstCleaner.WinUI
         void AddButton_Click(object sender, RoutedEventArgs e)
         {
             Whitelist.AddToWhitelist(ViewModel.SelectedVst);
-            Debug.WriteLine($"Add to whitelist button clicked");
             Whitelist.SaveWhiteList(JsonPath);
         }
 
         void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             Whitelist.RemoveFromWhitelist(Whitelist.SelectedVst);
-            Debug.WriteLine($"Remove from whitelist button clicked");
             Whitelist.SaveWhiteList(JsonPath);
         }
 
@@ -61,14 +59,12 @@ namespace VstCleaner.WinUI
         void GetVstDirectory_Click(object sender, RoutedEventArgs e)
         {
             VstDirectory.GetDir();
-            Debug.WriteLine($"Get Vst Directory button clicked");
             ViewModel.Load(VstDirectory.VstPath);
         }
 
         void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.Delete(Whitelist.Vsts);
-            Debug.WriteLine($"Delete Vsts button clicked");
             ViewModel.Load(VstDirectory.VstPath);
         }
 
