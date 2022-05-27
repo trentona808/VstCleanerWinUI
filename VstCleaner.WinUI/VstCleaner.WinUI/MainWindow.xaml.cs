@@ -1,11 +1,9 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using VstCleaner.DataAccess;
 using VstCleaner.ViewModel;
-
 
 namespace VstCleaner.WinUI
 {
@@ -13,7 +11,6 @@ namespace VstCleaner.WinUI
     public sealed partial class MainWindow : Window
     {
         private string _jsonPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\test.json";
-
 
         public MainWindow()
         {
