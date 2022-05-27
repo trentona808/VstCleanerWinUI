@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using VstCleaner.DataAccess;
 using VstCleaner.ViewModel;
@@ -57,13 +58,8 @@ namespace VstCleaner.WinUI
 
             if (VstsNotWhitelisted != null)
             {
-                ContentDialog deleteFileDialog = new ContentDialog
-                {
-                    Title = "Delete file(s) permanently?",
-                    Content = "If you delete the file, you won't be able to recover it. Are you sure you want to delete it?",
-                    PrimaryButtonText = "Delete",
-                    CloseButtonText = "Cancel"
-                };
+
+                var deleteFileDialog = MainViewModel.DisplayDeleteFileDialog(VstsNotWhitelisted);
 
                 deleteFileDialog.XamlRoot = this.Content.XamlRoot;
 
@@ -72,8 +68,18 @@ namespace VstCleaner.WinUI
                 // Delete the file if the user clicked the primary button.
                 if (result == ContentDialogResult.Primary)
                 {
-                    MainViewModel.Delete(VstsNotWhitelisted);
-                    ViewModel.Load(VstDirectory.VstPath);
+                    try
+                    {
+                        MainViewModel.Delete(VstsNotWhitelisted);
+                        ViewModel.Load(VstDirectory.VstPath);
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        var unauthorizedAccessDialog = MainViewModel.DisplayUnauthorizedAccessDialog();
+                        unauthorizedAccessDialog.XamlRoot = this.Content.XamlRoot;
+                        await unauthorizedAccessDialog.ShowAsync();
+                    }
+
                 }
 
             }
@@ -81,7 +87,6 @@ namespace VstCleaner.WinUI
 
 
         private string _jsonPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\test.json";
-        //private string _jsonPath = @"C:\Users\Trenton\Documents\test.json";
 
         public string JsonPath
         {

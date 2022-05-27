@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.UI.Xaml.Controls;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using VstCleaner.Common.DataProvider;
 using VstCleaner.Common.Model;
 
@@ -42,22 +44,49 @@ namespace VstCleaner.ViewModel
 
         public void Load(string VstDir)
         {
-            vsts = _vstDataProvider.LoadVsts(VstDir);
-
-            Vsts.Clear();
-            foreach (var vst in vsts)
+            if (VstDir != null)
             {
-                Vsts.Add(new VstViewModel(vst, _vstDataProvider));
+                vsts = _vstDataProvider.LoadVsts(VstDir);
+
+                Vsts.Clear();
+                foreach (var vst in vsts)
+                {
+                    Vsts.Add(new VstViewModel(vst, _vstDataProvider));
+                }
             }
+
         }
 
+        static public ContentDialog DisplayUnauthorizedAccessDialog()
+        {
+            ContentDialog unauthorizedAccessDialog = new ContentDialog()
+            {
+                Title = "Unauthorized Access",
+                Content = "You don't have permissions to delete the file(s). Try running this app as an administrator.",
+                CloseButtonText = "Ok"
+            };
+            return unauthorizedAccessDialog;
+        }
+
+        static public ContentDialog DisplayDeleteFileDialog(List<VstViewModel> vstsNotWhitelisted)
+        {
+            List<string> vstNamesToDelete = vstsNotWhitelisted.Select(o => o.VstName).ToList();
+            string vstsToDelete = string.Join("\n", vstNamesToDelete);
+
+            ContentDialog deleteFileDialog = new ContentDialog
+            {
+                Title = "Delete file(s) permanently?",
+                Content = $"If you delete the file, you won't be able to recover it. Are you sure you want to delete the follwing?\n\n{vstsToDelete}",
+                PrimaryButtonText = "Delete",
+                CloseButtonText = "Cancel"
+            };
+            return deleteFileDialog;
+        }
 
         static public void Delete(List<VstViewModel> vstsNotWhitelisted)
         {
-
             foreach (var vst in vstsNotWhitelisted)
             {
-
                 if (File.Exists(vst.FullPath))
                 {
                     File.Delete(vst.FullPath);

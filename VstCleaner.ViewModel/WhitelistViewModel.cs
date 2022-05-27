@@ -53,21 +53,23 @@ namespace VstCleaner.ViewModel
 
         public void AddToWhitelist(VstViewModel selectedVst)
         {
-            if (Vsts == null)
-                Vsts.Add(selectedVst);
-
-            else
+            if (selectedVst != null)
             {
-                bool duplicateVst = Vsts.Any(x => x.FullPath == selectedVst.FullPath);
-
-                if (!duplicateVst)
-                {
+                if (Vsts == null)
                     Vsts.Add(selectedVst);
+
+                else
+                {
+                    bool duplicateVst = Vsts.Any(x => x.FullPath == selectedVst.FullPath);
+
+                    if (!duplicateVst)
+                    {
+                        Vsts.Add(selectedVst);
+                    }
                 }
             }
 
             WhitelistViewModel.SortByVstName(Vsts);
-
         }
 
         public static ObservableCollection<VstViewModel> SortByVstName(ObservableCollection<VstViewModel> collectionToSort)
