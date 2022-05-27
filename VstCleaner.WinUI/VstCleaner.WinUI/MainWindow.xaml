@@ -14,10 +14,11 @@
             <RowDefinition Height="auto"/>
             <RowDefinition />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
 
         <!--Header-->
@@ -28,17 +29,19 @@
 
             <TextBlock HorizontalTextAlignment="Center" 
                        Text="VST CLEANER"
-                       Margin="20"/>
-            <TextBlock HorizontalTextAlignment="Center"
-                       Text="{x:Bind ViewModel.SelectedVst.FullPath, Mode=OneWay}"
-                       Margin="20"/>
-            <TextBlock HorizontalTextAlignment="Center"
-                       Text="{x:Bind VstDirectory.VstPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                       Margin="20"/>
-            <Button Content="Get Directory"
+                       Margin="10"/>
+            <StackPanel Orientation="Horizontal"
+                        Width="450"
+                        HorizontalAlignment="Center">
+                <Button Content="Select Folder"
                     Margin="0 0 25 0"
-                    HorizontalAlignment="Center"
                     Click="GetVstDirectory_Click"/>
+                <TextBox
+                       Text="{x:Bind VstDirectory.VstPath, Mode=OneWay}"
+                       Margin="0"
+                       IsReadOnly="True"
+                       Width="300"/>
+            </StackPanel>
 
         </StackPanel>
 
@@ -55,10 +58,7 @@
                     Margin="10"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Button Content="Refresh"
-                    Margin="0 0 25 0"/>
             <Button Content="Add to Whitelist"
-                    Margin="0 0 25 0"
                     Click="AddButton_Click"/>
         </StackPanel>
 
@@ -76,14 +76,19 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <Button Content="Remove from Whitelist" 
-                    Margin="0 0 25 0" 
                     HorizontalAlignment="Center" 
                     Click="RemoveButton_Click"/>
-            <Button Content="Delete Vsts" 
-                    Click="DeleteButton_Click"
-                    Margin="0 0 25 0" 
-                    HorizontalAlignment="Center" />
+        </StackPanel>
 
+        <StackPanel Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    Margin="20">
+            <Button Content="Delete Vsts" 
+                    FontWeight="Bold"
+                    Click="DeleteButton_Click"
+                    Padding="20 5"
+                    HorizontalAlignment="Center" />
 
         </StackPanel>
 
