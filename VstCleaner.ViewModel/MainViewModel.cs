@@ -20,8 +20,6 @@ namespace VstCleaner.ViewModel
         private VstViewModel _selectedVst;
         private readonly IVstDataProvider _vstDataProvider;
 
-        //public string vDir { get; set; }
-
         public MainViewModel(IVstDataProvider vstDataProvider)
         {
             _vstDataProvider = vstDataProvider;
@@ -67,7 +65,6 @@ namespace VstCleaner.ViewModel
 
             foreach (var vst in VstsNotWhitelisted)
             {
-                //Debug.WriteLine($"{vst.FullPath}");
 
                 if (File.Exists(vst.FullPath))
                 {

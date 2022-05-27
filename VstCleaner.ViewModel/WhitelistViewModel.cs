@@ -56,7 +56,6 @@ namespace VstCleaner.ViewModel
 
         public void AddToWhitelist(VstViewModel selectedVst)
         {
-            //Can remove duplicate validation if "isWhitelisted" is removed from model and/or "isWhitelisted" is added to Vsts when loading.
             if (Vsts == null)
                 Vsts.Add(selectedVst);
 
@@ -69,6 +68,20 @@ namespace VstCleaner.ViewModel
                     Vsts.Add(selectedVst);
                 }
             }
+
+            WhitelistViewModel.SortByVstName(Vsts);
+
+        }
+
+        public static ObservableCollection<VstViewModel> SortByVstName(ObservableCollection<VstViewModel> collectionToSort)
+        {
+            ObservableCollection<VstViewModel> temp;
+            temp = new ObservableCollection<VstViewModel>(collectionToSort.OrderBy(p => p.VstName));
+            collectionToSort.Clear();
+            foreach (VstViewModel j in temp) collectionToSort.Add(j);
+            return collectionToSort;
+
+
         }
 
         public void RemoveFromWhitelist(VstViewModel selectedVst)
