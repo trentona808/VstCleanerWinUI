@@ -9,6 +9,12 @@ namespace VstCleaner.DataAccess
 {
     public class WhitelistDataProvider : IVstDataProvider
     {
+        public static void SaveWhitelist(List<Vst> list, string jsonPath)
+        {
+            string jsonString = JsonSerializer.Serialize(list);
+            File.WriteAllText(jsonPath, jsonString);
+        }
+
         public IEnumerable<Vst> LoadVsts(string jsonPath)
         {
             if (File.Exists(jsonPath))
@@ -21,13 +27,6 @@ namespace VstCleaner.DataAccess
                 var vstList = new List<Vst>();
                 return vstList;
             }
-        }
-
-
-        public static void SaveWhitelist(List<Vst> list, string jsonPath)
-        {
-            string jsonString = JsonSerializer.Serialize(list);
-            File.WriteAllText(jsonPath, jsonString);
         }
 
         public List<Vst> ReadJson(string jsonPath)

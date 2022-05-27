@@ -12,6 +12,9 @@ namespace VstCleaner.WinUI
 
     public sealed partial class MainWindow : Window
     {
+        private string _jsonPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\test.json";
+
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -22,9 +25,14 @@ namespace VstCleaner.WinUI
             ViewModel = new MainViewModel(new VstDataProvider());
 
             VstDirectory = new DirectoryViewModel();
-
         }
 
+
+        public string JsonPath
+        {
+            get { return _jsonPath; }
+            set { _jsonPath = value; }
+        }
 
         public MainViewModel ViewModel { get; }
 
@@ -45,7 +53,6 @@ namespace VstCleaner.WinUI
             Whitelist.SaveWhiteList(JsonPath);
         }
 
-
         void GetVstDirectory_Click(object sender, RoutedEventArgs e)
         {
             VstDirectory.GetDir();
@@ -58,7 +65,6 @@ namespace VstCleaner.WinUI
 
             if (VstsNotWhitelisted != null)
             {
-
                 var deleteFileDialog = MainViewModel.DisplayDeleteFileDialog(VstsNotWhitelisted);
 
                 deleteFileDialog.XamlRoot = this.Content.XamlRoot;
@@ -79,20 +85,10 @@ namespace VstCleaner.WinUI
                         unauthorizedAccessDialog.XamlRoot = this.Content.XamlRoot;
                         await unauthorizedAccessDialog.ShowAsync();
                     }
-
                 }
-
             }
         }
 
-
-        private string _jsonPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\test.json";
-
-        public string JsonPath
-        {
-            get { return _jsonPath; }
-            set { _jsonPath = value; }
-        }
 
     }
 }

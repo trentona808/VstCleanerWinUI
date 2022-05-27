@@ -9,16 +9,17 @@ namespace VstCleaner.ViewModel
 {
     public class WhitelistViewModel : ViewModelBase
     {
-        private VstViewModel _selectedVst;
         private readonly IVstDataProvider _vstDataProvider;
+        private VstViewModel _selectedVst;
 
-        public string vDir { get; set; }
 
         public WhitelistViewModel(IVstDataProvider vstDataProvider)
         {
             _vstDataProvider = vstDataProvider;
         }
 
+
+        public string vDir { get; set; }
 
         public ObservableCollection<VstViewModel> Vsts { get; set; } = new();
 
@@ -39,6 +40,7 @@ namespace VstCleaner.ViewModel
         }
 
         public bool IsVstSelected => SelectedVst != null;
+
 
         public void Load(string jsonPath)
         {
@@ -68,18 +70,9 @@ namespace VstCleaner.ViewModel
                     }
                 }
             }
-
             WhitelistViewModel.SortByVstName(Vsts);
         }
 
-        public static ObservableCollection<VstViewModel> SortByVstName(ObservableCollection<VstViewModel> collectionToSort)
-        {
-            ObservableCollection<VstViewModel> temp;
-            temp = new ObservableCollection<VstViewModel>(collectionToSort.OrderBy(p => p.VstName));
-            collectionToSort.Clear();
-            foreach (VstViewModel j in temp) collectionToSort.Add(j);
-            return collectionToSort;
-        }
 
         public void RemoveFromWhitelist(VstViewModel selectedVst)
         {
@@ -99,6 +92,16 @@ namespace VstCleaner.ViewModel
             }
             WhitelistDataProvider.SaveWhitelist(list, jsonPath);
         }
+
+        private static ObservableCollection<VstViewModel> SortByVstName(ObservableCollection<VstViewModel> collectionToSort)
+        {
+            ObservableCollection<VstViewModel> temp;
+            temp = new ObservableCollection<VstViewModel>(collectionToSort.OrderBy(p => p.VstName));
+            collectionToSort.Clear();
+            foreach (VstViewModel j in temp) collectionToSort.Add(j);
+            return collectionToSort;
+        }
+
     }
 }
 

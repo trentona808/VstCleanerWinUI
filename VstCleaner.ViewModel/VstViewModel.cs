@@ -9,11 +9,13 @@ namespace VstCleaner.ViewModel
         private readonly Vst _vst;
         private readonly IVstDataProvider _vstDataProvider;
 
+
         public VstViewModel(Vst vst, IVstDataProvider vstDataProvider)
         {
             _vst = vst;
             _vstDataProvider = vstDataProvider;
         }
+
 
         public string VstName
         {
@@ -47,7 +49,9 @@ namespace VstCleaner.ViewModel
             return this.VstName == other.VstName && this.FullPath == other.FullPath && this.IsWhitelisted == other.IsWhitelisted;
         }
 
+
         public override bool Equals(object obj) => Equals(obj as VstViewModel);
         public override int GetHashCode() => (VstName, FullPath, IsWhitelisted).GetHashCode();
+
     }
 }

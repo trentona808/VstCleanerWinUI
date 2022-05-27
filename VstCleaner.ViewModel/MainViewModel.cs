@@ -11,9 +11,9 @@ namespace VstCleaner.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-
-        private VstViewModel _selectedVst;
         private readonly IVstDataProvider _vstDataProvider;
+        private VstViewModel _selectedVst;
+
 
         public MainViewModel(IVstDataProvider vstDataProvider)
         {
@@ -39,23 +39,8 @@ namespace VstCleaner.ViewModel
             }
         }
 
-
         public bool IsVstSelected => SelectedVst != null;
 
-        public void Load(string VstDir)
-        {
-            if (VstDir != null)
-            {
-                vsts = _vstDataProvider.LoadVsts(VstDir);
-
-                Vsts.Clear();
-                foreach (var vst in vsts)
-                {
-                    Vsts.Add(new VstViewModel(vst, _vstDataProvider));
-                }
-            }
-
-        }
 
         static public ContentDialog DisplayUnauthorizedAccessDialog()
         {
@@ -94,6 +79,20 @@ namespace VstCleaner.ViewModel
                 }
             }
 
+        }
+
+        public void Load(string VstDir)
+        {
+            if (VstDir != null)
+            {
+                vsts = _vstDataProvider.LoadVsts(VstDir);
+
+                Vsts.Clear();
+                foreach (var vst in vsts)
+                {
+                    Vsts.Add(new VstViewModel(vst, _vstDataProvider));
+                }
+            }
         }
 
     }

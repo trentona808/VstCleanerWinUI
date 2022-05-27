@@ -21,10 +21,8 @@ namespace VstCleaner.DataAccess
                     IsWhitelisted = false
                 });
             }
-
             return vstList;
 
         }
-
     }
 }
