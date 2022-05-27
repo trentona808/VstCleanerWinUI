@@ -62,10 +62,32 @@ namespace VstCleaner.WinUI
             ViewModel.Load(VstDirectory.VstPath);
         }
 
-        void DeleteButton_Click(object sender, RoutedEventArgs e)
+        async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.Delete(Whitelist.Vsts);
-            ViewModel.Load(VstDirectory.VstPath);
+            var VstsNotWhitelisted = ViewModel.Vsts.Except(Whitelist.Vsts).ToList();
+
+            if (VstsNotWhitelisted != null)
+            {
+                ContentDialog deleteFileDialog = new ContentDialog
+                {
+                    Title = "Delete file(s) permanently?",
+                    Content = "If you delete the file, you won't be able to recover it. Are you sure you want to delete it?",
+                    PrimaryButtonText = "Delete",
+                    CloseButtonText = "Cancel"
+                };
+
+                deleteFileDialog.XamlRoot = this.Content.XamlRoot;
+
+                ContentDialogResult result = await deleteFileDialog.ShowAsync();
+
+                // Delete the file if the user clicked the primary button.
+                if (result == ContentDialogResult.Primary)
+                {
+                    MainViewModel.Delete(VstsNotWhitelisted);
+                    ViewModel.Load(VstDirectory.VstPath);
+                }
+
+            }
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 using VstCleaner.Common.DataProvider;
 using VstCleaner.Common.Model;
 using VstCleaner.DataAccess;
-
+using Windows.Foundation.Metadata;
 
 namespace VstCleaner.ViewModel
 {
@@ -26,15 +27,15 @@ namespace VstCleaner.ViewModel
         }
 
 
-        public ObservableCollection<VstViewModel> Vsts { get; set;  } = new();
+        public ObservableCollection<VstViewModel> Vsts { get; set; } = new();
 
         public IEnumerable<Vst> vsts { get; set; }
 
         public VstViewModel SelectedVst
         {
             get { return _selectedVst; }
-            set 
-            { 
+            set
+            {
                 if (_selectedVst != value)
                 {
                     _selectedVst = value;
@@ -59,11 +60,10 @@ namespace VstCleaner.ViewModel
         }
 
 
-        public void Delete(ObservableCollection<VstViewModel> Whitelist)
+        static public void Delete(List<VstViewModel> vstsNotWhitelisted)
         {
-            var VstsNotWhitelisted = Vsts.Except(Whitelist).ToList();
 
-            foreach (var vst in VstsNotWhitelisted)
+            foreach (var vst in vstsNotWhitelisted)
             {
 
                 if (File.Exists(vst.FullPath))
@@ -73,8 +73,7 @@ namespace VstCleaner.ViewModel
                 }
             }
 
-
-
         }
+
     }
 }
