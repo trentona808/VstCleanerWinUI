@@ -1,17 +1,9 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VstCleaner.Common.DataProvider;
 using VstCleaner.Common.Model;
-using VstCleaner.DataAccess;
-using Windows.Foundation.Metadata;
 
 namespace VstCleaner.ViewModel
 {

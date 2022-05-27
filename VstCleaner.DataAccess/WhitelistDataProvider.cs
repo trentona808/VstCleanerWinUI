@@ -1,15 +1,9 @@
 ﻿//using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VstCleaner.Common.DataProvider;
 using VstCleaner.Common.Model;
 using System.Text.Json;
-using System.Collections.ObjectModel;
 
 namespace VstCleaner.DataAccess
 {
