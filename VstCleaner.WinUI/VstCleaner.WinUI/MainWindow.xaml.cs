@@ -91,7 +91,8 @@ namespace VstCleaner.WinUI
         }
 
 
-        private string _jsonPath = @"C:\Users\Trenton\Documents\test.json";
+        private string _jsonPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\test.json";
+        //private string _jsonPath = @"C:\Users\Trenton\Documents\test.json";
 
         public string JsonPath
         {
