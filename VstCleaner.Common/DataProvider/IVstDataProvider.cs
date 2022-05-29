@@ -6,6 +6,5 @@ namespace VstCleaner.Common.DataProvider
     public interface IVstDataProvider
     {
         IEnumerable<Vst> LoadVsts(string path);
-
     }
 }

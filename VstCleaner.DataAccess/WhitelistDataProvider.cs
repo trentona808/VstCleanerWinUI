@@ -41,7 +41,6 @@ namespace VstCleaner.DataAccess
         {
             public string VstName { get; set; }
             public string FullPath { get; set; }
-            public bool IsWhitelisted { get; set; }
         }
 
 

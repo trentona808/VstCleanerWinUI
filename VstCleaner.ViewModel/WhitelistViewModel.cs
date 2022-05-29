@@ -85,7 +85,7 @@ namespace VstCleaner.ViewModel
             {
                 foreach (var vst in Vsts)
                 {
-                    list.Add(new Vst() { VstName = vst.VstName, FullPath = vst.FullPath, IsWhitelisted = false });
+                    list.Add(new Vst() { VstName = vst.VstName, FullPath = vst.FullPath });
                 }
             }
             WhitelistDataProvider.SaveWhitelist(list, jsonPath);
