@@ -49,8 +49,8 @@ namespace VstCleaner.ViewModel
             return this.VstName == other.VstName && this.FullPath == other.FullPath && this.IsWhitelisted == other.IsWhitelisted;
         }
 
-
         public override bool Equals(object obj) => Equals(obj as VstViewModel);
+
         public override int GetHashCode() => (VstName, FullPath, IsWhitelisted).GetHashCode();
 
     }

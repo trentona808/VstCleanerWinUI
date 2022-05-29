@@ -9,7 +9,7 @@
   <Identity
     Name="4c2621bc-7179-4d64-a878-f44fd3eb8fa0"
     Publisher="CN=Kelli"
-    Version="1.0.1.0" />
+    Version="1.0.2.0" />
 
   <Properties>
     <DisplayName>VstCleaner.WinUI (Package)</DisplayName>

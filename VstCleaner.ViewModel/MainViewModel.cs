@@ -78,16 +78,15 @@ namespace VstCleaner.ViewModel
                     Debug.WriteLine($"{vst.VstName} was deleted.");
                 }
             }
-
         }
 
         public void Load(string VstDir)
         {
             if (VstDir != null)
             {
-                vsts = _vstDataProvider.LoadVsts(VstDir);
-
                 Vsts.Clear();
+
+                vsts = _vstDataProvider.LoadVsts(VstDir);
                 foreach (var vst in vsts)
                 {
                     Vsts.Add(new VstViewModel(vst, _vstDataProvider));
