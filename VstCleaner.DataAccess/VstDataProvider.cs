@@ -18,7 +18,6 @@ namespace VstCleaner.DataAccess
                 {
                     VstName = System.IO.Path.GetFileName(file),
                     FullPath = System.IO.Path.GetFullPath(file),
-                    IsWhitelisted = false
                 });
             }
             return vstList;

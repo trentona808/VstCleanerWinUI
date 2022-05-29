@@ -36,22 +36,18 @@ namespace VstCleaner.ViewModel
             set { _vst.FullPath = value; }
         }
 
-        public bool IsWhitelisted
-        {
-            get { return _vst.IsWhitelisted; }
-            set { _vst.IsWhitelisted = value; }
-        }
 
+        //Below code is needed for IEquatable
         public bool Equals(VstViewModel other)
         {
             if (other is null)
                 return false;
-            return this.VstName == other.VstName && this.FullPath == other.FullPath && this.IsWhitelisted == other.IsWhitelisted;
+            return this.VstName == other.VstName && this.FullPath == other.FullPath;
         }
 
-
         public override bool Equals(object obj) => Equals(obj as VstViewModel);
-        public override int GetHashCode() => (VstName, FullPath, IsWhitelisted).GetHashCode();
+
+        public override int GetHashCode() => (VstName, FullPath).GetHashCode();
 
     }
 }

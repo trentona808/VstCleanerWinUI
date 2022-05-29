@@ -68,7 +68,6 @@ namespace VstCleaner.WinUI
 
                 ContentDialogResult result = await deleteFileDialog.ShowAsync();
 
-                // Delete the file if the user clicked the primary button.
                 if (result == ContentDialogResult.Primary)
                 {
                     try

@@ -6,6 +6,5 @@
 
         public string FullPath { get; set; }
 
-        public bool IsWhitelisted { get; set; }
     }
 }

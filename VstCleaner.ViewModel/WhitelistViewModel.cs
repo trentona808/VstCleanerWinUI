@@ -19,11 +19,11 @@ namespace VstCleaner.ViewModel
         }
 
 
-        public string vDir { get; set; }
-
         public ObservableCollection<VstViewModel> Vsts { get; set; } = new();
+        
+        public IEnumerable<Vst> vsts { get; set;  }
 
-        public IEnumerable<Vst> vsts { get; set; }
+        public bool IsVstSelected => SelectedVst != null;
 
         public VstViewModel SelectedVst
         {
@@ -39,14 +39,12 @@ namespace VstCleaner.ViewModel
             }
         }
 
-        public bool IsVstSelected => SelectedVst != null;
-
 
         public void Load(string jsonPath)
         {
-            vsts = _vstDataProvider.LoadVsts(jsonPath);
-
             Vsts.Clear();
+
+            vsts = _vstDataProvider.LoadVsts(jsonPath);
             foreach (var vst in vsts)
             {
                 Vsts.Add(new VstViewModel(vst, _vstDataProvider));
@@ -82,12 +80,12 @@ namespace VstCleaner.ViewModel
         public void SaveWhiteList(string jsonPath)
         {
             var list = new List<Vst>();
+
             if (Vsts != null)
             {
                 foreach (var vst in Vsts)
                 {
-
-                    list.Add(new Vst() { VstName = vst.VstName, FullPath = vst.FullPath, IsWhitelisted = false });
+                    list.Add(new Vst() { VstName = vst.VstName, FullPath = vst.FullPath });
                 }
             }
             WhitelistDataProvider.SaveWhitelist(list, jsonPath);

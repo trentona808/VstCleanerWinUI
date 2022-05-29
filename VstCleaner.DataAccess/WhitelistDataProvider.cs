@@ -15,6 +15,13 @@ namespace VstCleaner.DataAccess
             File.WriteAllText(jsonPath, jsonString);
         }
 
+        private static List<Vst> ReadJson(string jsonPath)
+        {
+            string jsonString = File.ReadAllText(jsonPath);
+            List<Vst> vstList = JsonSerializer.Deserialize<List<Vst>>(jsonString)!;
+            return vstList;
+        }
+
         public IEnumerable<Vst> LoadVsts(string jsonPath)
         {
             if (File.Exists(jsonPath))
@@ -29,18 +36,11 @@ namespace VstCleaner.DataAccess
             }
         }
 
-        public List<Vst> ReadJson(string jsonPath)
-        {
-            string jsonString = File.ReadAllText(jsonPath);
-            List<Vst> vstList = JsonSerializer.Deserialize<List<Vst>>(jsonString)!;
-            return vstList;
-        }
 
         public class WhitelistVst
         {
             public string VstName { get; set; }
             public string FullPath { get; set; }
-            public bool IsWhitelisted { get; set; }
         }
 
 
